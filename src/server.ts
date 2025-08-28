@@ -6,7 +6,6 @@ import http from "http";
 
 import { Request, Response, NextFunction } from "express";
 import { attachWs } from "./services/webSocket/index.js";
-import { WebSocketServer } from "ws";
 
 const PORT = 3000;
 const app = express();
