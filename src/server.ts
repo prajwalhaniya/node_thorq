@@ -7,6 +7,7 @@ import { Request, Response, NextFunction } from "express";
 
 const PORT = 3000;
 const app = express();
+app.use(express.json());
 
 const router = express.Router({ mergeParams: true });
 
