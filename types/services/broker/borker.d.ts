@@ -1,4 +1,4 @@
-import { Subscriber, Stats, WS } from './brokerTypes.js';
+import { Subscriber, Stats, WS, BackpressurePolicy } from './brokerTypes.js';
 export declare class Broker {
     private topics;
     private clients;
@@ -8,7 +8,7 @@ export declare class Broker {
     createTopic(name: string): boolean;
     deleteTopic(name: string): boolean;
     listTopics(): string[];
-    attachClient(socket: WS, maxQueue?: number): Subscriber;
+    attachClient(socket: WS, maxQueue?: number, policy?: BackpressurePolicy): Subscriber;
     detachClient(subId: string): void;
     subscribe(sub: Subscriber, topicName: string): void;
     unsubscribe(sub: Subscriber, topicName: string): void;

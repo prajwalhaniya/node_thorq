@@ -19,6 +19,7 @@ export type Operation = {
 } | {
     op: 'ping';
 };
+export type BackpressurePolicy = 'drop_oldest' | 'disconnect';
 export interface Subscriber {
     id: string;
     socket: WS;
@@ -26,6 +27,7 @@ export interface Subscriber {
     sending: boolean;
     maxQueue: number;
     topics: Set<string>;
+    policy?: BackpressurePolicy;
 }
 export interface Stats {
     startedAt: number;

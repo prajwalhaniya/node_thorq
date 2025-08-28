@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 import { Topic } from './topic.js';
-import { Subscriber, Stats, WS } from './brokerTypes.js';
+import { Subscriber, Stats, WS, BackpressurePolicy } from './brokerTypes.js';
 
 export class Broker {
     private topics = new Map<string, Topic>();
@@ -27,7 +27,7 @@ export class Broker {
         return [...this.topics.keys()];
     }
 
-    attachClient(socket: WS, maxQueue = 100): Subscriber {
+    attachClient(socket: WS, maxQueue = 100, policy: BackpressurePolicy = 'disconnect'): Subscriber {
         const sub: Subscriber = {
             id: randomUUID(),
             socket,
@@ -35,6 +35,7 @@ export class Broker {
             sending: false,
             maxQueue,
             topics: new Set(),
+            policy
         };
         
         this.clients.set(sub.id, sub);

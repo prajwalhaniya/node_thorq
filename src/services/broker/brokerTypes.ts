@@ -14,6 +14,7 @@ export type Operation =
   | { op: 'publish'; topic: string; data: unknown }
   | { op: 'ping' };
 
+export type BackpressurePolicy = 'drop_oldest' | 'disconnect';
   
 export interface Subscriber {
     id: string;
@@ -22,6 +23,7 @@ export interface Subscriber {
     sending: boolean;
     maxQueue: number;
     topics: Set<string>;
+    policy?: BackpressurePolicy;
 }
 
 export interface Stats {
@@ -32,5 +34,6 @@ export interface Stats {
     delivered: number;
     perTopic: Record<string, { subs: number; published: number; delivered: number }>;
 }
+
 
 export type WS = WebSocket;
