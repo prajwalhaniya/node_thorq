@@ -40,12 +40,14 @@ Dockerfile is attached with the repository. After cloning just run the below com
 `Using docker`
 
 docker build -t node_thorq .
+
 docker run -p 3000:3000 my-node-app
 
 
 ## Running locally via yarn
 
 Run `Yarn` in the root directory of the project.
+
 Then `yarn start-server`
 
 You will have the project running in localhost:3000
