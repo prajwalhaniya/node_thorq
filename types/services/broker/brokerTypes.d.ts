@@ -6,6 +6,19 @@ export interface OutboundFrame {
     msgId?: string;
     reason?: string;
 }
+export type Operation = {
+    op: 'subscribe';
+    topic: string;
+} | {
+    op: 'unsubscribe';
+    topic: string;
+} | {
+    op: 'publish';
+    topic: string;
+    data: unknown;
+} | {
+    op: 'ping';
+};
 export interface Subscriber {
     id: string;
     socket: WS;
