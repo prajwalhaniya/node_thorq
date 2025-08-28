@@ -45,4 +45,5 @@ router.delete('/topics/:name', (req, res) => {
     const ok = broker.deleteTopic(req.params.name);
     return ok ? res.json({ ok: true }) : res.status(404).json({ error: 'not-found' });
 });
+
 export default router;

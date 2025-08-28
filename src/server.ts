@@ -2,6 +2,7 @@ import express from "express";
 import appRoutes from "./routes/index.js";
 import "reflect-metadata";
 import logger from "./services/logger/index.js";
+import http from "http";
 
 import { Request, Response, NextFunction } from "express";
 import { attachWs } from "./services/webSocket/index.js";
@@ -22,16 +23,11 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 router.use("/app", appRoutes);
 
-app.listen(PORT, () => {
-    logger.info("Server is listening on the port", PORT);
+const server = http.createServer(app);
+attachWs(server);
 
-    const wss = new WebSocketServer({ port: 4000 });
-
-    console.log("WS on 4000");
-
-    wss.on("connection", (socket) => {
-        console.log("New client connected");
-    });
-    console.log("Server is listening on the port", PORT);
+server.listen(PORT, () => {
+    logger.info("Server is listening on port", PORT);
+    console.log(`HTTP + WS server running at http://localhost:${PORT}`);
+    console.log(`WebSocket endpoint available at ws://localhost:${PORT}/ws`);
 });
-
