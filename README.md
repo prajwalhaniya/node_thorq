@@ -1,5 +1,7 @@
 # node_thorq
 
+A pub/sub system built using node.js and TypeScript.
+
 # APIs
 
 ### Get the list of topics
