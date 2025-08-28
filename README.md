@@ -52,3 +52,5 @@ Then `yarn start-server`
 
 You will have the project running in localhost:3000
 
+> I have been building something similar in rust. You can checkout the project [here](https://github.com/one8-labs/thorq)
+
