@@ -10,7 +10,7 @@ ws.onopen = () => {
 
   // Simulate publishing 10 messages very quickly (filling the queue)
   setTimeout(() => {
-    for (let i = 1; i <= 150; i++) {
+    for (let i = 1; i <= 1500; i++) {
       ws.send(JSON.stringify({
         op: 'publish',
         topic: 'orders',
