@@ -1,4 +1,4 @@
-import { WebSocket as WS } from "ws";
+import { WebSocket } from "ws";
 
 export interface OutboundFrame {
     op: 'message' | 'info' | 'error' | 'pong';
@@ -16,4 +16,15 @@ export interface Subscriber {
     sending: boolean;
     maxQueue: number;
     topics: Set<string>;
-  }
+}
+
+export interface Stats {
+    startedAt: number;
+    clients: number;
+    topics: number;
+    published: number;
+    delivered: number;
+    perTopic: Record<string, { subs: number; published: number; delivered: number }>;
+}
+
+export type WS = WebSocket;
