@@ -8,8 +8,15 @@ router.get("/", (req, res) => {
 });
 
 router.get("/health", async (req, res) => {
-    const getUser = await userController.getUsers();
-    res.send(getUser);
+    const healthCheck = {
+        status: 'OK',
+        timestamp: new Date().toISOString(),
+        uptime: process.uptime(),
+        memoryUsage: process.memoryUsage(),
+        environment: process.env.NODE_ENV || 'development'
+    };
+    
+    res.status(200).json(healthCheck);
 });
 
 
