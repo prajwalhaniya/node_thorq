@@ -1,5 +1,5 @@
 import express from "express";
-import userController from "../controller/index.js";
+import { broker } from "../services/broker/borker.js"
 
 const router = express.Router({ mergeParams: true });
 
@@ -19,5 +19,8 @@ router.get("/health", async (req, res) => {
     res.status(200).json(healthCheck);
 });
 
+router.get('/stats', async (_req, res) => {
+    res.json(broker.stats())
+});
 
 export default router;
