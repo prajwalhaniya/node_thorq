@@ -28,6 +28,7 @@ router.get('/topics', (req, res) => {
 });
 
 
+// @ts-ignore
 router.post('/topics', (req, res) => {
     const { name } = req.body ?? {};
     console.log({ re: req.body });
@@ -37,6 +38,11 @@ router.post('/topics', (req, res) => {
     const ok = broker.createTopic(name);
     
     return ok ? res.status(201).json({ ok: true }) : res.status(409).json({ error: 'exists' });
-})
+});
 
+// @ts-ignore
+router.delete('/topics/:name', (req, res) => {
+    const ok = broker.deleteTopic(req.params.name);
+    return ok ? res.json({ ok: true }) : res.status(404).json({ error: 'not-found' });
+});
 export default router;

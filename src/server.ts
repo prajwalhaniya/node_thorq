@@ -4,6 +4,8 @@ import "reflect-metadata";
 import logger from "./services/logger/index.js";
 
 import { Request, Response, NextFunction } from "express";
+import { attachWs } from "./services/webSocket/index.js";
+import { WebSocketServer } from "ws";
 
 const PORT = 3000;
 const app = express();
@@ -22,6 +24,14 @@ router.use("/app", appRoutes);
 
 app.listen(PORT, () => {
     logger.info("Server is listening on the port", PORT);
+
+    const wss = new WebSocketServer({ port: 4000 });
+
+    console.log("WS on 4000");
+
+    wss.on("connection", (socket) => {
+        console.log("New client connected");
+    });
     console.log("Server is listening on the port", PORT);
 });
 
